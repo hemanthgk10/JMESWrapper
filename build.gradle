@@ -3,6 +3,10 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.5
 version = '1.0'
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
+
 jar {
     manifest {
         attributes 'Implementation-Title': 'Java Wrapper for JMESPath', 'Implementation-Version': version

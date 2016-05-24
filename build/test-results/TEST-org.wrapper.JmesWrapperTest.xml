@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.wrapper.JmesWrapperTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-05-24T22:28:31" hostname="C02MJ85JFD57" time="1.2">
+<testsuite name="org.wrapper.JmesWrapperTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-05-24T22:40:17" hostname="C02MJ85JFD57" time="1.295">
   <properties/>
-  <testcase name="jsonTest" classname="org.wrapper.JmesWrapperTest" time="0.77"/>
-  <testcase name="functionTest" classname="org.wrapper.JmesWrapperTest" time="0.194"/>
-  <testcase name="stringJsonTest" classname="org.wrapper.JmesWrapperTest" time="0.177"/>
-  <testcase name="invalidJsonTest" classname="org.wrapper.JmesWrapperTest" time="0.057"/>
+  <testcase name="jsonTest" classname="org.wrapper.JmesWrapperTest" time="0.804"/>
+  <testcase name="functionTest" classname="org.wrapper.JmesWrapperTest" time="0.238"/>
+  <testcase name="stringJsonTest" classname="org.wrapper.JmesWrapperTest" time="0.193"/>
+  <testcase name="invalidJsonTest" classname="org.wrapper.JmesWrapperTest" time="0.058"/>
   <system-out><![CDATA[JSON DATA:{"foo":{"bar":{"baz":[0,1,2,3,4]}}}
-Input Stream:java.io.BufferedInputStream@69eb579
+Input Stream:java.io.BufferedInputStream@4e01c12d
 Search Query:jmespath.search({"foo":{"bar":{"baz":[0,1,2,3,4]}}},'foo.bar.baz[2]')
-Input Stream:java.io.BufferedInputStream@7ef82073
+Input Stream:java.io.BufferedInputStream@24a8560
 Search Query:jmespath.search({"people": [{"name" : "b","age" : 30},{"name" : "c","age" : 30},{"name" : "d","age" : 30}]},'length(people)')
-Input Stream:java.io.BufferedInputStream@33fb8711
+Input Stream:java.io.BufferedInputStream@b1e2a9b
 Search Query:jmespath.search({"foo": {"bar": {"baz": [0, 1, 2, 3, 4]}}},'foo.bar.baz[2]')
-Input Stream:java.io.BufferedInputStream@31c258b1
+Input Stream:java.io.BufferedInputStream@ea6a88e
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
