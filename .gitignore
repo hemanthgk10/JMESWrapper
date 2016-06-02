@@ -4,3 +4,9 @@
 .settings/
 .DS_Store
 *.DS_Store
+bin/
+.loadpath
+tmp/
+.metadata
+build/
+gradle.properties

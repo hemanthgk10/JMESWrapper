@@ -1,5 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 sourceCompatibility = 1.5
 version = '1.0'
@@ -11,6 +13,25 @@ jar {
     manifest {
         attributes 'Implementation-Title': 'Java Wrapper for JMESPath', 'Implementation-Version': version
     }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
 
 repositories {
@@ -19,8 +40,8 @@ repositories {
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-    compile 'com.google.code.gson:gson:1.7.2' 
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    compile 'com.google.code.gson:gson:1.7.2'
+    testCompile group: 'junit', name: 'junit', version: '4.4'
 }
 
 test {
@@ -29,8 +50,43 @@ test {
 
 uploadArchives {
     repositories {
-       flatDir {
-           dirs 'repos'
-       }
+       mavenDeployer {
+         beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      } 
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'JmesWrapper'
+        packaging 'jar'
+        // optionally artifactId can be defined here
+        description 'Java Wrapper for JmesPath using Nashorn'
+        url 'https://github.com/hemanthgk10/jmeswrapper'
+
+        scm {
+          connection 'scm:git:https://github.com/hemanthgk10/jmeswrapper.git'
+          developerConnection 'scm:git:https://github.com/hemanthgk10/jmeswrapper.git'
+          url 'https://github.com/hemanthgk10/jmeswrapper.git'
+        }
+
+        licenses {
+          license {
+            name 'The MIT License (MIT)'
+            url 'http://opensource.org/licenses/MIT'
+          }
+        }
+
+        developers {
+          developer {
+            id 'hemanthgk10'
+            name 'Hemanth Gokavarapu'
+            email 'hemanthgk10@gmail.com'
+          }
+        }
+      }
+     }
     }
 }

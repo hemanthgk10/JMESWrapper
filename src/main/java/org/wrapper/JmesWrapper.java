@@ -42,7 +42,6 @@ public class JmesWrapper {
         engine = new ScriptEngineManager().getEngineByName("nashorn");
 		try {
 			InputStream in = JmesWrapper.class.getResourceAsStream("/js/jmespath.js"); 
-			System.out.println("Input Stream:" + in.toString());
 		    engine.eval(new InputStreamReader(in));
 		} catch (ScriptException e) {
 			e.printStackTrace();
